@@ -63,9 +63,6 @@
                 <li routerLinkActive="active">
                     <a routerLink="/home">Home</a>
                 </li>
-                <li routerLinkActive="active" *ngIf="isAdmin">
-                    <a routerLink="/admin">Admin</a>
-                </li>
                 <li routerLinkActive="active">
                     <a routerLink="/projects">Opportunity</a>
                 </li>
@@ -80,6 +77,12 @@
                 </li>
                 <li routerLinkActive="active">
                     <a routerLink="/events">Events</a>
+                </li>
+                <li routerLinkActive="active" *ngIf="isAdmin">
+                    <a routerLink="/admin">Admin</a>
+                </li>
+                <li routerLinkActive="active" *ngIf="isAdmin">
+                    <a routerLink="/artifacts">Artifacts</a>
                 </li>
             </ul>
             <form

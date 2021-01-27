@@ -162,10 +162,10 @@ export class DashboardComponent implements OnInit {
     this.eventService.getEvents().subscribe(
         (resp) => {
           if(Array.isArray(resp)){
-            //resp.reverse();
+            resp.reverse();
             this.eventSlide1 = resp.slice(0, 3);
             this.eventSlide2 = resp.slice(3,6);
-          }            
+          }
         },
         (err) => {
             console.log(err);

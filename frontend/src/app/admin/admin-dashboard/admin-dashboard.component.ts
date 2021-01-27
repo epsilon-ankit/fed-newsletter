@@ -52,6 +52,7 @@ export class AdminDashboardComponent implements OnInit {
         label: 'User',
         value: 'user'
       }];
+      this.generateDPF();
   }
 
   /**
@@ -184,14 +185,17 @@ export class AdminDashboardComponent implements OnInit {
       (resp) => {
         let htmlData = this.pdfData.nativeElement;
         this.projectsList = resp;
-        let doc = new jsPDF('p','pt', 'a4');
-        doc.html(htmlData.innerHTML, {
-          callback: function (doc) {
-            doc.save('newsletter.pdf');
-          },
-          x:20,
-          y:10
-        });
+        /* setTimeout(() => {
+          let doc = new jsPDF('p','pt', 'a4');
+          doc.html(htmlData.innerHTML, {
+            callback: function (doc) {
+              doc.save('newsletter.pdf');
+            },
+            x:20,
+            y:10
+          });
+        }, 500); */
+        
       },
       (err) => {
           console.log(err);

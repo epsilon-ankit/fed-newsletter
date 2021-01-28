@@ -11,11 +11,14 @@ export class AddComponent implements OnInit {
     clientkeyword = "clientName";
     oppkeyword = "oppName";
     dxpkeyword = "name";
+    dxlekeyword = "dxLeadEmail";
     dxpList;
+    dxleList;
     srkeyword = "salesRepresentative";
     lists;
     addForm;
     successMssg;
+    errorMssg;
     topPosToStartShowing = 100;
 
     constructor(
@@ -25,6 +28,7 @@ export class AddComponent implements OnInit {
         this.addForm = this.fb.group({
             clientName: ["", Validators.required],
             oppName: ["", Validators.required],
+            oppDesc: [""],
             dealValue: [""],
             dxValue: [""],
             oppStatus: ["", Validators.required],
@@ -33,7 +37,9 @@ export class AddComponent implements OnInit {
             dealCloseDate: [""],
             estStartDate: [""],
             salesForceURL: [""],
+            artifactsURL: [""],
             dxPursuitLead: ["", Validators.required],
+            dxLeadEmail: ["", Validators.required],
             salesRepresentative: ["", Validators.required],
             statusUpdate: [""],
         });
@@ -50,12 +56,15 @@ export class AddComponent implements OnInit {
         );
         this.projectService.leadList("").subscribe(
             (resp) => {
-                this.dxpList = resp;
+                if(Array.isArray(resp)){
+                    this.dxpList = resp.map(a => a.name);
+                    this.dxleList = resp.map(a => a.email);
+                }
             },
             (err) => {
                 console.log(err);
             }
-        );
+        );        
     }
 
     gotoTop() {
@@ -88,6 +97,8 @@ export class AddComponent implements OnInit {
     onSubmit() {
         console.log(this.addForm.invalid);
         if (this.addForm.invalid) {
+            this.errorMssg = true;
+            this.successMssg = false;
             return;
         } else {
             console.log(this.addForm.value);
@@ -103,6 +114,9 @@ export class AddComponent implements OnInit {
             if (this.addForm.value.dxPursuitLead.name) {
                 temp.dxPursuitLead = this.addForm.value.dxPursuitLead.name;
             }
+            if (this.addForm.value.dxLeadEmail.name) {
+                temp.dxLeadEmail = this.addForm.value.dxLeadEmail.name;
+            }
             if (this.addForm.value.salesRepresentative.salesRepresentative) {
                 temp.salesRepresentative = this.addForm.value.salesRepresentative.salesRepresentative;
             }
@@ -110,11 +124,14 @@ export class AddComponent implements OnInit {
             this.projectService.add(this.addForm.value).subscribe(
                 (resp) => {
                     console.log(resp);
-                    this.successMssg = true;
                     //this.addForm.reset();
+                    this.errorMssg = false;
+                    this.successMssg = true;
                 },
                 (err) => {
                     console.log(err);
+                    this.errorMssg = true;
+                    this.successMssg = false;
                 }
             );
         }

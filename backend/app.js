@@ -21,9 +21,16 @@ if (!config.get('PrivateKey')) {
   console.error('FATAL ERROR: PrivateKey is not defined');
   process.exit(1);
 }
- 
 
-mongoose.connect('mongodb://localhost:27017/newsletter', { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+//When in development
+let db_uri = "mongodb://localhost:27017/newsletter";
+ 
+//When in production
+if (process.env.NODE_ENV == 'production') {
+    db_uri = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/?authSource=admin`;
+}
+
+mongoose.connect(db_uri, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log('Now connected to MongoDB!'))
   .catch(err => console.log('Something went wrong', err));
 
@@ -39,5 +46,5 @@ app.use('/api/events', events);
 // app.use('/api/platforms', platforms);
 // app.use('/api/properties', properties);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4005;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

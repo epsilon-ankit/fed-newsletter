@@ -15,7 +15,8 @@ const LocationsSchema = new mongoose.Schema({
 });
 
 const LeadSchema = new mongoose.Schema({
-  name: String
+  name: String,
+  email: String
 })
 const Employee = mongoose.model("Employee", EmployeeSchema, "employees");
 const Location = mongoose.model("Location", LocationsSchema, "locations");

@@ -39,6 +39,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Opportunity Description:</label>
+                        <textarea
+                            class="form-control"
+                            formControlName="oppDesc"
+                            row="8"
+                            maxlength="750"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
                         <label>Deal Value:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -178,6 +188,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Artifacts Sharepoint URL:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="artifactsURL"
+                        />
+                    </div>
+
+                    <div class="form-group">
                         <label>DX Pursuit Lead:</label>
                         <div class="ng-autocomplete">
                             <ng-autocomplete
@@ -192,6 +211,30 @@
                             </ng-autocomplete>
 
                             <ng-template #dxpTemplate let-item>
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>DX Lead Email:</label>
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete
+                                [data]="dxleList"
+                                [searchKeyword]="dxlekeyword"
+                                placeHolder="DX Lead Email"
+                                historyIdentifier="dxleList"
+                                [itemTemplate]="dxleTemplate"
+                                [notFoundTemplate]="notFoundTemplate"
+                                formControlName="dxLeadEmail"
+                            >
+                            </ng-autocomplete>
+
+                            <ng-template #dxleTemplate let-item>
                                 <a [innerHTML]="item.name"></a>
                             </ng-template>
 

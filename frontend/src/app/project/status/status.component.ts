@@ -13,8 +13,11 @@ export class StatusComponent implements OnInit {
     datas;
     dealCloseDate;
     dxpList;
+    dxleList;
     dxpkeyword = "name";
+    dxlekeyword = "dxLeadEmail";
     successMssg;
+    errorMssg;
     srkeyword = "salesRepresentative";
     lists;
 
@@ -26,6 +29,7 @@ export class StatusComponent implements OnInit {
             clientName: ["", Validators.required],
             oppName: [{ value: "", disabled: true }, Validators.required],
             dealValue: ["", Validators.required],
+            oppDesc: ["", Validators.required],
             dxValue: ["", Validators.required],
             oppStatus: ["", Validators.required],
             domain: ["", Validators.required],
@@ -33,7 +37,9 @@ export class StatusComponent implements OnInit {
             dealCloseDate: ["", Validators.required],
             estStartDate: ["", Validators.required],
             salesForceURL: ["", Validators.required],
+            artifactsURL: ["", Validators.required],
             dxPursuitLead: ["", Validators.required],
+            dxLeadEmail: ["", Validators.required],
             salesRepresentative: ["", Validators.required],
             statusUpdate: ["", Validators.required],
         });
@@ -52,7 +58,10 @@ export class StatusComponent implements OnInit {
             );
         this.projectService.leadList("").subscribe(
             (resp) => {
-                this.dxpList = resp;
+                if(Array.isArray(resp)){
+                    this.dxpList = resp.map(a => a.name);
+                    this.dxleList = resp.map(a => a.email);
+                }
             },
             (err) => {
                 console.log(err);
@@ -77,6 +86,7 @@ export class StatusComponent implements OnInit {
         console.log(dataValue.history.length);
         if (dataValue.history != 0) {
             let length = dataValue.history.length;
+            dataValue.oppDesc = dataValue.history[length - 1].oppDesc;
             dataValue.dxValue = dataValue.history[length - 1].dxValue;
             dataValue.dealValue = dataValue.history[length - 1].dealValue;
             dataValue.oppStatus = dataValue.history[length - 1].oppStatus;
@@ -85,6 +95,8 @@ export class StatusComponent implements OnInit {
             dataValue.probility = dataValue.history[length - 1].probility;
             dataValue.salesForceURL =
                 dataValue.history[length - 1].salesForceURL;
+            dataValue.artifactsURL =
+                dataValue.history[length - 1].artifactsURL;
             dataValue.dealCloseDate =
                 dataValue.history[length - 1].dealCloseDate;
             dataValue.estStartDate = dataValue.history[length - 1].estStartDate;
@@ -96,6 +108,7 @@ export class StatusComponent implements OnInit {
         }
         this.editForm.patchValue({
             oppName: dataValue.oppName,
+            oppDesc: dataValue.oppDesc,
             dxValue: dataValue.dxValue,
             dealValue: dataValue.dealValue,
             oppStatus: dataValue.oppStatus,
@@ -103,9 +116,11 @@ export class StatusComponent implements OnInit {
             dealStatus: dataValue.dealStatus,
             probility: dataValue.probility,
             salesForceURL: dataValue.salesForceURL,
+            artifactsURL: dataValue.artifactsURL,
             dealCloseDate: dataValue.dealCloseDate,
             estStartDate: dataValue.estStartDate,
             dxPursuitLead: dataValue.dxPursuitLead[0].name,
+            dxLeadEmail: dataValue.dxPursuitLead[0].email,
             salesRepresentative: dataValue.salesRepresentative,
             statusUpdate: dataValue.statusUpdate,
         });
@@ -131,9 +146,12 @@ export class StatusComponent implements OnInit {
         this.projectService.update(id, data).subscribe(
             (resp) => {
                 console.log(resp);
+                this.errorMssg = false;
                 this.successMssg = true;
             },
             (err) => {
+                this.errorMssg = true;
+                this.successMssg = false;
                 console.log(err);
             }
         );

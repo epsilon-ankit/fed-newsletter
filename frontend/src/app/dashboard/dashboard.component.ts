@@ -91,9 +91,9 @@ export class DashboardComponent implements OnInit {
         (resp) => {
           if(Array.isArray(resp)){
             resp.reverse();
-            this.eventSlide1 = resp.slice(0,3);
+            this.eventSlide1 = resp.slice(0, 3);
             this.eventSlide2 = resp.slice(3,6);
-          }            
+          }
         },
         (err) => {
             console.log(err);

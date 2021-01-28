@@ -7,7 +7,10 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { ProjectService } from "../../project/project.service";
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import jsPDF from 'jspdf';
+import { EventServiceService } from 'src/app/event/event-service.service';
 
 
 @Component({
@@ -26,7 +29,10 @@ export class AdminDashboardComponent implements OnInit {
   submitted: boolean;
   errorMsg;
   clonedUsers: { [s: string]: User; } = {};
-  @Input() projectsList: any;
+  @Input() newWinsSigned: any;
+  @Input() newWinsVerbal: any;
+  @Input() keyBusinessOpportunities: any;
+  @Input() eventsList: any;
 
 
   constructor(
@@ -35,6 +41,7 @@ export class AdminDashboardComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     public projectService: ProjectService,
+    public eventService: EventServiceService,
   ) { }
 
   ngOnInit() {
@@ -52,6 +59,7 @@ export class AdminDashboardComponent implements OnInit {
         label: 'User',
         value: 'user'
       }];
+      this.generateDPF();
   }
 
   /**
@@ -180,22 +188,39 @@ export class AdminDashboardComponent implements OnInit {
   * @description Generate PDF
   */
   public generateDPF():void {
-    this.projectService.list("").subscribe(
-      (resp) => {
-        let htmlData = this.pdfData.nativeElement;
-        this.projectsList = resp;
-        let doc = new jsPDF('p','pt', 'a4');
-        doc.html(htmlData.innerHTML, {
-          callback: function (doc) {
-            doc.save('newsletter.pdf');
-          },
-          x:20,
-          y:10
-        });
-      },
-      (err) => {
-          console.log(err);
+
+    const requests = forkJoin(
+      this.eventService.getEvents().pipe(map(value => ({type: 'events', value : value}))),
+      this.projectService.list("").pipe(map(value => ({type: 'projects', value: value})))
+    )
+
+    requests.subscribe(
+      resp => {
+        for(let result of resp) {
+          if(result.type === 'events') {
+            this.eventsList = result.value;
+            console.log(this.eventsList);
+          } else if(result.type === 'projects') {
+            // TODO: filter out newWinsSinged, newWinsVerbal and keyBusinessOpportunities based on the status of the opportunities.
+            //        Use this information to create the HTML in the template file.
+            //        Finally use the below code to generate PDF.
+          }
+        }
       }
     )
+    /* 
+        let htmlData = this.pdfData.nativeElement;
+        this.projectsList = resp;
+        setTimeout(() => {
+          let doc = new jsPDF('p','pt', 'a4');
+          doc.html(htmlData.innerHTML, {
+            callback: function (doc) {
+              doc.save('newsletter.pdf');
+            },
+            x:20,
+            y:10
+          });
+        }, 500);
+    ) */
   }
 }

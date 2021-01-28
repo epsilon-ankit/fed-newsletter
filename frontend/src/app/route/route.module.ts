@@ -10,6 +10,7 @@ import { ViewDetailComponent } from "../project/view-detail/view-detail.componen
 import { ResultComponent } from "../search/result/result.component";
 import { EventComponent } from "../event/event/event.component";
 import { AdminDashboardComponent } from "../admin/admin-dashboard/admin-dashboard.component";
+import { ArtifactsComponent } from '../artifacts/artifacts.component';
 
 export const appRoutes: Routes = [
     { path: "login", component: LoginComponent },
@@ -37,6 +38,7 @@ export const appRoutes: Routes = [
     },
     { path: "search", component: ResultComponent, canActivate: [AuthGuard] },
     { path: "events", component: EventComponent, canActivate: [AuthGuard] },
+    { path: "artifacts", component: ArtifactsComponent, canActivate: [AuthGuard] },
     {
         path: "admin",
         component: AdminDashboardComponent,

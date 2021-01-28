@@ -21,7 +21,7 @@ router.post('/', auth, async (req, res) => {
             reqDatat.dxPursuitLead = docs[0]._id;
             projectInsert(reqDatat);
         } else {
-            let leadSave = new Lead({ name: req.body.dxPursuitLead });
+            let leadSave = new Lead({ name: req.body.dxPursuitLead, email: req.body.dxLeadEmail });
             leadSave.save();
             reqDatat.dxPursuitLead = leadSave._id;
             projectInsert(reqDatat);

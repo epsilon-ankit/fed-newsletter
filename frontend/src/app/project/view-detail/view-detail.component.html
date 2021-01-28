@@ -6,33 +6,58 @@
     <div class="card-body">
       <h5>{{detail?.oppName}}</h5>
       <div class="row mt-3">
-        <div class="col">
-          <span class="card-link">Deal Value</span> : {{detail?.dealValue}}
+        <div class="col-3">
+          <span class="card-link">Deal Value :</span> 
+          <p>{{detail?.dealValue}}</p>
         </div>
-        <div class="col">
-          <span class="card-link">DX Value</span> : {{detail?.dxValue}}
+        <div class="col-3">
+          <span class="card-link">DX Value :</span> 
+          <p>{{detail?.dxValue}}</p>
         </div>
-        <div class="col">
-          <span class="card-link">Opportunity Status</span> : {{detail?.oppStatus}}
+        <div class="col-3">
+          <span class="card-link">Opportunity Status :</span> 
+          <p>{{detail?.oppStatus}}</p>
         </div>
-        <div class="col">
-          <span class="card-link">Vertical/Domain</span> : {{detail?.domain}}
+        <div class="col-3">
+          <span class="card-link">Vertical/Domain :</span> 
+          <p>{{detail?.domain}}</p>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">
+          <span class="card-link">Probility :</span>
+          <p>{{detail?.probility}}</p>
+        </div>
+        <div class="col-3">
+          <span class="card-link">DX Pursuit Lead :</span>
+          <p>{{detail?.dxPursuitLead[0].name}}</p>
+        </div>
+        <div class="col-3">
+          <span class="card-link">DX Lead Email:</span>
+          <p>{{detail?.dxPursuitLead[0].email}}</p>
+        </div>
+        <div class="col-3">
+          <span class="card-link">Sales Representative :</span>
+          <p>{{detail?.salesRepresentative}}</p>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">
+          <span class="card-link">Salesforce URL :</span>
+          <p><a href="{{detail?.salesForceURL}}" target="_blank">{{detail?.salesForceURL}}</a></p>
+        </div>
+        <div class="col-3">
+          <span class="card-link">Artifacts Sharepoint URL:</span>
+          <p><a href="{{detail?.artifactsURL}}" target="_blank">{{detail?.artifactsURL}}</a></p>
         </div>
       </div>
       <div class="row mb-3 mt-3">
         <div class="col">
-          <span class="card-link">Probility</span> : {{detail?.probility}}
-        </div>
-        <div class="col">
-          <span class="card-link">DX Pursuit Lead</span> : {{detail?.dxPursuitLead[0].name}}
-        </div>
-        <div class="col">
-          <span class="card-link">Sales Representative</span> : {{detail?.salesRepresentative}}
+          <span class="card-link">Description :</span> 
+          <p>{{detail?.oppDesc}}</p>
         </div>
       </div>
-
-
-
+      
       <div class="timeline">
         <div class="item" *ngFor="let hist of detail?.history">
           <div class="date">
@@ -45,26 +70,57 @@
           <div class="content">
 
             <div class="row">
-              <div class="col">
+              <div class="col-4">
                 <dt>Deal Value</dt>
                 <dl>{{hist.dealValue}}</dl>
               </div>
-              <div class="col">
+              <div class="col-4">
                 <dt>DX Pursuit Lead</dt>
                 <dl>{{hist.dxPursuitLead[0].name}}</dl>
               </div>
-              <div class="col">
+              <div class="col-4">
+                <dt>DX Lead Email</dt>
+                <dl>{{hist.dxPursuitLead[0].email}}</dl>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4">
                 <dt>Probility</dt>
                 <dl>{{hist.probility}}</dl>
               </div>
-              <div class="col">
+              <div class="col-4">
                 <dt>Est. Start Date</dt>
                 <dl>{{hist.estStartDate.year}}/{{hist.estStartDate.month}}/{{hist.estStartDate.day}}</dl>
               </div>
+              <div class="col-4">
+                  <dt>Status Update:</dt> 
+                  <dl>
+                    <blockquote class="blockquote">
+                      {{hist.statusUpdate}}
+                    </blockquote>
+                  </dl>
+               </div>
+            </div> 
+
+            <div class="row">
+              <div class="col-3">
+                <dt>Salesforce URL :</dt>
+                <dl><a href="{{hist.salesForceURL}}" target="_blank">{{hist.salesForceURL}}</a></dl>
+              </div>
+              <div class="col-3">
+                <dt>Artifacts Sharepoint URL:</dt>
+                <dl><a href="{{hist.artifactsURL}}" target="_blank">{{hist.artifactsURL}}</a></dl>
+              </div>
             </div>
-            <blockquote class="blockquote">
-              <p><b>Status Update:</b> {{hist.statusUpdate}}</p>
-            </blockquote>
+            
+            <div class="row">
+              <div class="col">
+                <dt>Description</dt>
+                <dl>{{hist.oppDesc}}</dl>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

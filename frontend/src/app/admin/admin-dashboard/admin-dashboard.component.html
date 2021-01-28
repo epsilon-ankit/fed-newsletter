@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <p-tabView>
                 <!-- /////////////////
                       Tab 1 - Manage Users
                      ///////////////// -->
-                <p-tabPanel header="Manage Users">
+                <p-tabPanel>
                     <div class="grid-block">
                         <h2 class="mb-4">Manage Users</h2>
                         <!-- ////////////
@@ -153,16 +153,49 @@
                 <!-- /////////////////
                       Tab 2 - Send Email Remainder
                      ///////////////// -->
-                <p-tabPanel header="Send Email Remainder">
+                <!-- <p-tabPanel header="Send Email Remainder">
                     Content 2
-                </p-tabPanel>
+                </p-tabPanel> -->
                 <!-- /////////////////
                       Tab 2 - Generate Newsletter
                      ///////////////// -->
-                <p-tabPanel header="Generate Newsletter">
+                <!-- <p-tabPanel header="Generate Newsletter">
                     Content 3
-                </p-tabPanel>
+                </p-tabPanel> -->
             </p-tabView>
+        </div>
+        <div class="col-md-3">
+            <div class="pdf-sidebar generate-pdf">
+                <p>Last email is sent on Jan 27, 2021</p>
+                <div style="display: none; width: 548px;" id="pdf-container"></div>
+                <button (click)="generateDPF()" class="btn btn-success">Generate Newsletter</button>
+            </div>
+            <div id="pdfData" #pdfData style="display: none;">
+                <div class="metaData">Metadata will come here</div>
+                <div class="pdf-body">
+                    <table style=" width: 548px;">
+                        <tr>
+                            <th>Upcoming Events</th>
+                        </tr>
+                        <tr *ngFor="let event of eventsList | slice:0:3">
+                            <td>
+                                <h5>{{event.name}}</h5>
+                                <p>{{event.description}}</p>
+                            </td>
+                        </tr>
+                        <table style=" width: 548px;">
+                            <tr>
+                                <th>New Wins: Signed</th>
+                            </tr>
+                            <tr *ngFor="let project of projectsList">
+                                <td>
+                                    Client: {{project.clientName}}
+                                </td>
+                            </tr>
+                        </table>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

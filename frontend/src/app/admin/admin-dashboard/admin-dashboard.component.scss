@@ -18,3 +18,34 @@
 :host ::ng-deep .ui-dialog .ui-dialog-content {
     overflow-x: hidden;
 }
+
+.generate-pdf {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+    background: #fff;
+    border: 1px dashed #999;
+    padding: 15px;
+    transition: background .2s;
+}
+
+#pdfData {
+    th {
+        font-size: 22px;
+        color: #2f5496;
+        font-weight: 500;
+    }
+    td {
+        color: #2f5496;
+    }
+    p {
+        margin-bottom: 50px;
+    }
+    button {
+        justify-self: center;
+        padding: 20px 0;
+    }
+    &:hover {
+        background: #fafafa;
+    }
+}

@@ -15,9 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouteModule } from '../route/route.module';
+import { ArtifactsComponent } from '../artifacts/artifacts.component';
 
 @NgModule({
-  declarations: [MainComponent, LoginComponent, DashboardComponent, DashboardComponent],
+  declarations: [MainComponent, LoginComponent, DashboardComponent, ArtifactsComponent],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, SharedModule, AngularFontAwesomeModule, NgbModule, NgxChartsModule, BrowserAnimationsModule, RouteModule, ProjectModule, EventModule, SearchModule],
   exports: [MainComponent, LoginComponent]
 })

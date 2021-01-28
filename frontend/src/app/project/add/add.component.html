@@ -14,6 +14,9 @@
         <div class="alert alert-success" role="alert" *ngIf="successMssg">
             New Opportunity is Added
         </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMssg">
+            Something went wrong. Check if all required fields are filled and please try again.
+        </div>
         <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>Client Name<sup>*</sup>:</label>
@@ -61,6 +64,16 @@
                         <div [innerHTML]="notFound"></div>
                     </ng-template>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label>Opportunity Description:</label>
+                <textarea
+                    class="form-control"
+                    formControlName="oppDesc"
+                    row="8"
+                    maxlength="750"
+                ></textarea>
             </div>
 
             <div class="form-group">
@@ -200,6 +213,15 @@
             </div>
 
             <div class="form-group">
+                <label>Artifacts Sharepoint URL:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="artifactsURL"
+                />
+            </div>
+
+            <div class="form-group">
                 <label>DX Pursuit Lead<sup>*</sup>:</label>
                 <div class="ng-autocomplete">
                     <ng-autocomplete
@@ -214,7 +236,31 @@
                     </ng-autocomplete>
 
                     <ng-template #dxpTemplate let-item>
-                        <a [innerHTML]="item.name"></a>
+                        <a [innerHTML]="item"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>DX Lead Email<sup>*</sup>:</label>
+                <div class="ng-autocomplete">
+                    <ng-autocomplete
+                        [data]="dxleList"
+                        [searchKeyword]="dxlekeyword"
+                        placeHolder="DX Lead Email"
+                        historyIdentifier="dxleList"
+                        [itemTemplate]="dxleTemplate"
+                        [notFoundTemplate]="notFoundTemplate"
+                        formControlName="dxLeadEmail"
+                    >
+                    </ng-autocomplete>
+
+                    <ng-template #dxleTemplate let-item>
+                        <a [innerHTML]="item"></a>
                     </ng-template>
 
                     <ng-template #notFoundTemplate let-notFound>

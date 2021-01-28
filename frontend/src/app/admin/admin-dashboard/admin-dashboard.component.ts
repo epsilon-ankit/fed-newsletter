@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { MustMatch } from "../../shared/_helpers/custom-validator";
 import { User } from '../user';
@@ -6,6 +6,12 @@ import { UserServiceService } from "../user-service.service";
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
+import { ProjectService } from "../../project/project.service";
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import jsPDF from 'jspdf';
+import { EventServiceService } from 'src/app/event/event-service.service';
+
 
 @Component({
   selector: "app-admin-dashboard",
@@ -14,6 +20,7 @@ import { SelectItem } from 'primeng/api';
 })
 
 export class AdminDashboardComponent implements OnInit {
+  @ViewChild('pdfData', {static: false}) pdfData:ElementRef;
   userDialog: boolean;
   userList: User[];
   user: User;
@@ -22,12 +29,19 @@ export class AdminDashboardComponent implements OnInit {
   submitted: boolean;
   errorMsg;
   clonedUsers: { [s: string]: User; } = {};
+  @Input() newWinsSigned: any;
+  @Input() newWinsVerbal: any;
+  @Input() keyBusinessOpportunities: any;
+  @Input() eventsList: any;
+
 
   constructor(
     private fb: FormBuilder,
     public userService: UserServiceService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public projectService: ProjectService,
+    public eventService: EventServiceService,
   ) { }
 
   ngOnInit() {
@@ -44,7 +58,8 @@ export class AdminDashboardComponent implements OnInit {
       {
         label: 'User',
         value: 'user'
-      }]
+      }];
+      this.generateDPF();
   }
 
   /**
@@ -167,5 +182,45 @@ export class AdminDashboardComponent implements OnInit {
         this.user = {};
       }
     });
+  }
+
+  /**
+  * @description Generate PDF
+  */
+  public generateDPF():void {
+
+    const requests = forkJoin(
+      this.eventService.getEvents().pipe(map(value => ({type: 'events', value : value}))),
+      this.projectService.list("").pipe(map(value => ({type: 'projects', value: value})))
+    )
+
+    requests.subscribe(
+      resp => {
+        for(let result of resp) {
+          if(result.type === 'events') {
+            this.eventsList = result.value;
+            console.log(this.eventsList);
+          } else if(result.type === 'projects') {
+            // TODO: filter out newWinsSinged, newWinsVerbal and keyBusinessOpportunities based on the status of the opportunities.
+            //        Use this information to create the HTML in the template file.
+            //        Finally use the below code to generate PDF.
+          }
+        }
+      }
+    )
+    /* 
+        let htmlData = this.pdfData.nativeElement;
+        this.projectsList = resp;
+        setTimeout(() => {
+          let doc = new jsPDF('p','pt', 'a4');
+          doc.html(htmlData.innerHTML, {
+            callback: function (doc) {
+              doc.save('newsletter.pdf');
+            },
+            x:20,
+            y:10
+          });
+        }, 500);
+    ) */
   }
 }

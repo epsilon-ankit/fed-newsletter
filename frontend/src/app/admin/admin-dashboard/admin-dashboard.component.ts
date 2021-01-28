@@ -201,6 +201,7 @@ export class AdminDashboardComponent implements OnInit {
             this.eventsList = result.value;
             console.log(this.eventsList);
           } else if(result.type === 'projects') {
+            
             // TODO: filter out newWinsSinged, newWinsVerbal and keyBusinessOpportunities based on the status of the opportunities.
             //        Use this information to create the HTML in the template file.
             //        Finally use the below code to generate PDF.

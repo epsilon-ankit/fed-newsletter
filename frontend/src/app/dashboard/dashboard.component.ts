@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     yAxisLabel: string = "Project";
     timeline: boolean = true;
     first;
-    three;
+    three = [];
     lists;
 
     colorScheme = {
@@ -61,12 +61,6 @@ export class DashboardComponent implements OnInit {
     telecom = [];
     healthcare = [];
     tnh = [];
-    samsung = [];
-    microsoft = [];
-    bosch = [];
-    exxon = [];
-    telec = [];
-    citi = [];
 
     opportunity = [];
     data;
@@ -157,23 +151,9 @@ export class DashboardComponent implements OnInit {
                         if (resp[key].domain == "Travel & Hospitality") {
                             this.tnh.push(resp[key].domain);
                         }
-                        if (resp[key].clientName == "Samsung") {
-                            this.samsung.push(resp[key].clientName);
-                        }
-                        if (resp[key].clientName == "Microsoft") {
-                            this.microsoft.push(resp[key].clientName);
-                        }
-                        if (resp[key].clientName == "Citi") {
-                            this.citi.push(resp[key].clientName);
-                        }
-                        if (resp[key].clientName == "Telecom") {
-                            this.telec.push(resp[key].clientName);
-                        }
-                        if (resp[key].clientName == "Exxon") {
-                            this.exxon.push(resp[key].clientName);
-                        }
-                        if (resp[key].clientName == "Bosch") {
-                            this.bosch.push(resp[key].clientName);
+                        if(resp[key].clientName)
+                        {
+                          this.three.push(​​resp[key].clientName);
                         }
                     });
                 }
@@ -279,32 +259,6 @@ export class DashboardComponent implements OnInit {
                 value: this.tnh.length,
             },
         ];
-        this.three = [
-            {
-                name: "Samsung",
-                value: this.samsung.length,
-            },
-            {
-                name: "Bosch",
-                value: this.bosch.length,
-            },
-            {
-                name: "Exxon",
-                value: this.exxon.length,
-            },
-            {
-                name: "Citi",
-                value: this.citi.length,
-            },
-            {
-                name: "Telecom",
-                value: this.telec.length,
-            },
-            {
-                name: "Microsoft",
-                value: this.microsoft.length,
-            },
-        ];
         this.single = this.first;
     }
 
@@ -313,13 +267,22 @@ export class DashboardComponent implements OnInit {
     }
 
     change(e) {
-        console.log(e);
-        if (e == "Vertical Domain") {
-            this.single = this.two;
-        } else if (e == "By Client") {
-            this.single = this.three;
-        } else {
-            this.single = this.first;
-        }
-    }
+      let countClient = {};
+      let result =[];
+      this.three.forEach(function(x){
+      countClient[x] = (countClient[x] || 0) + 1;
+      });
+      
+       for (var num in countClient) {
+      result.push({'name': num, 'value': countClient[num]});
+      }
+      
+       if (e == "Vertical Domain") {
+      this.single = this.two;
+      } else if (e == "By Client") {
+      this.single = result;
+      } else {
+      this.single = this.first;
+      }
+      }
 }

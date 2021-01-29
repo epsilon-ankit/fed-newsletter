@@ -14,8 +14,8 @@ const httpOptions = {
 })
 export class HttpService {
 
-  // private endpoint = 'http://localhost:4005/api/';
-  private endpoint = 'http://15.206.221.177:4005/api/';
+  private endpoint = 'http://localhost:4005/api/';
+  // private endpoint = 'http://15.206.221.177:4005/api/';
 
 
 

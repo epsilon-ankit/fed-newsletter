@@ -32,6 +32,7 @@ export class AdminDashboardComponent implements OnInit {
   @Input() newWinsSigned: any;
   @Input() newWinsVerbal: any;
   @Input() keyBusinessOpportunities: any;
+  @Input() upcomingEvents: any;
   @Input() eventsList: any;
 
 
@@ -199,29 +200,20 @@ export class AdminDashboardComponent implements OnInit {
         for(let result of resp) {
           if(result.type === 'events') {
             this.eventsList = result.value;
-            console.log(this.eventsList);
-          } else if(result.type === 'projects') {
-            
-            // TODO: filter out newWinsSinged, newWinsVerbal and keyBusinessOpportunities based on the status of the opportunities.
-            //        Use this information to create the HTML in the template file.
-            //        Finally use the below code to generate PDF.
-          }
+          } 
         }
       }
     )
-    /* 
-        let htmlData = this.pdfData.nativeElement;
-        this.projectsList = resp;
-        setTimeout(() => {
-          let doc = new jsPDF('p','pt', 'a4');
-          doc.html(htmlData.innerHTML, {
-            callback: function (doc) {
-              doc.save('newsletter.pdf');
-            },
-            x:20,
-            y:10
-          });
-        }, 500);
-    ) */
+    let htmlData = this.pdfData.nativeElement;
+      setTimeout(() => {
+        let doc = new jsPDF('p','pt', 'a4');
+        doc.html(htmlData.innerHTML, {
+          callback: function (doc) {
+            doc.save('newsletter.pdf');
+          },
+          x:20,
+          y:10
+        });
+      }, 500);
   }
 }

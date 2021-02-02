@@ -167,31 +167,26 @@
         <div class="col-md-3">
             <div class="pdf-sidebar generate-pdf">
                 <p>Last email is sent on Jan 27, 2021</p>
-                <div style="display: none; width: 548px;" id="pdf-container"></div>
+                <div style="display: none;" id="pdf-container"></div>
                 <button (click)="generateDPF()" class="btn btn-success">Generate Newsletter</button>
             </div>
             <div id="pdfData" #pdfData style="display: none;">
-                <div class="metaData">Metadata will come here</div>
+                <div class="metaData"><!-- Metadata will come here --></div>
                 <div class="pdf-body">
-                    <table style=" width: 548px;">
-                        <tr>
-                            <th>Upcoming Events</th>
-                        </tr>
+                    <table>
                         <tr *ngFor="let event of eventsList | slice:0:3">
                             <td>
+                                <h1>{{event.eventStatus}}</h1>
                                 <h5>{{event.name}}</h5>
                                 <p>{{event.description}}</p>
                             </td>
                         </tr>
-                        <table style=" width: 548px;">
-                            <tr>
-                                <th>New Wins: Signed</th>
-                            </tr>
-                            <!-- <tr *ngFor="let project of projectsList">
+                        <table>
+                            <tr *ngFor="let project of projectsList">
                                 <td>
                                     Client: {{project.clientName}}
                                 </td>
-                            </tr> -->
+                            </tr>
                         </table>
                     </table>
                 </div>

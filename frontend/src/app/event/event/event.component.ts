@@ -57,7 +57,8 @@ export class EventComponent implements OnInit {
         this.submitted = true;
         let validName = this.event.name && this.event.name.length > 4;
         let validDesc = this.event.description;
-        if (validName && validDesc) {
+        let validStatus = this.event.eventStatus;
+        if (validName && validDesc && validStatus) {
             this.eventService.addEvent(this.event).subscribe(
                 (resp) => {
                     console.log(resp);

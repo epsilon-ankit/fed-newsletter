@@ -183,37 +183,61 @@
                         </tr>
                     </table>
                     <h4>New Wins - Signed</h4>
-                    <table>
-                        <tr *ngFor="let project of newWinsSigned">
+                    <table *ngFor="let project of newWinsSigned">
+                        <tr>
                             <td>
-                                Client: {{project.clientName}}
-                                Value : {{project.dealValue}}
-                                Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}
-                                <p>{{project.oppDesc}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                     <h4>New Wins - Verbal</h4>
-                    <table>
-                        <tr *ngFor="let project of newWinsVerbal">
+                    <table *ngFor="let project of newWinsVerbal">
+                        <tr>
                             <td>
-                                Client: {{project.clientName}}
-                                Value : {{project.dealValue}}
-                                Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}
-                                <p>{{project.oppDesc}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
-
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                     <h4>Key Business Opportunities</h4>
-                    <table>
-                        <tr *ngFor="let project of keyBusinessOpportunities">
+                    <table *ngFor="let project of keyBusinessOpportunities">
+                        <tr>
                             <td>
-                                Client: {{project.clientName}}
-                                Value : {{project.dealValue}}
-                                Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}
-                                <p>{{project.oppDesc}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Status : {{project.oppStatus}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                 </div>

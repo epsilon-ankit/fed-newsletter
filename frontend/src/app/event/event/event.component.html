@@ -61,7 +61,6 @@
                     <th>Description</th>
                     <th>Link</th>
                     <th>Action</th>
-                    <th>Status</th>
                 </tr>
             </ng-template>
 
@@ -91,7 +90,6 @@
                             title="Delete"
                         ></button>
                     </td>
-                    <td>{{ event.eventStatus }}</td>
                 </tr>
             </ng-template>
         </p-table>
@@ -161,20 +159,6 @@
                         name="eventLink"
                         [(ngModel)]="event.link"
                     />
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="eventStatus">Status*</label>
-                    <select class="form-control" name="eventStatus" [(ngModel)]="event.eventStatus">
-                        <option>Upcoming Events</option>
-                        <option>New Wins - Signed</option>
-                        <option>New Wins - Verbal</option>
-                        <option>Key Business Opportunities</option>
-                    </select>
-                    <div *ngIf="submitted">
-                        <small class="p-invalid" *ngIf="!event.eventStatus"
-                            >Status is required</small
-                        >
-                    </div>
                 </div>
             </div>
             <p-footer>

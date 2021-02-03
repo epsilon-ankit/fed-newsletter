@@ -29,10 +29,10 @@ export class AdminDashboardComponent implements OnInit {
   submitted: boolean;
   errorMsg;
   clonedUsers: { [s: string]: User; } = {};
-  @Input() newWinsSigned: any;
-  @Input() newWinsVerbal: any;
-  @Input() keyBusinessOpportunities: any;
-  @Input() upcomingEvents: any;
+  newWinsSigned: any;
+  newWinsVerbal: any;
+  keyBusinessOpportunities: any;
+  upcomingEvents: any;
   @Input() eventsList: any;
 
 
@@ -200,6 +200,10 @@ export class AdminDashboardComponent implements OnInit {
         for(let result of resp) {
           if(result.type === 'events') {
             this.eventsList = result.value;
+            this.upcomingEvents = this.eventsList.filter(item => item.eventStatus === 'Upcoming Events');
+            this.newWinsSigned = this.eventsList.filter(item => item.eventStatus === 'New Wins - Signed');
+            this.newWinsVerbal = this.eventsList.filter(item => item.eventStatus === 'New Wins - Verbal');
+            this.keyBusinessOpportunities = this.eventsList.filter(item => item.eventStatus === 'Key Business Opportunities'); 
           } 
         }
       }
@@ -214,6 +218,6 @@ export class AdminDashboardComponent implements OnInit {
           x:20,
           y:10
         });
-      }, 500);
+      }, 1000);
   }
 }

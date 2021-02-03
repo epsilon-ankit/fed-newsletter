@@ -172,22 +172,42 @@
             </div>
             <div id="pdfData" #pdfData style="display: none;">
                 <div class="metaData"><!-- Metadata will come here --></div>
-                <div class="pdf-body">
+                <div class="pdf-body" style="width: 500px;">
+                    <h4>Upcoming Events</h4>
                     <table>
-                        <tr *ngFor="let event of eventsList | slice:0:3">
+                        <tr *ngFor="let event of upcomingEvents">
                             <td>
-                                <h1>{{event.eventStatus}}</h1>
                                 <h5>{{event.name}}</h5>
                                 <p>{{event.description}}</p>
                             </td>
                         </tr>
-                        <table>
-                            <tr *ngFor="let project of projectsList">
-                                <td>
-                                    Client: {{project.clientName}}
-                                </td>
-                            </tr>
-                        </table>
+                    </table>
+                    <h4>New Wins - Signed</h4>
+                    <table>
+                        <tr *ngFor="let event of newWinsSigned">
+                            <td>
+                                <h5>{{event.name}}</h5>
+                                <p>{{event.description}}</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <h4>New Wins - Verbal</h4>
+                    <table>
+                        <tr *ngFor="let event of newWinsVerbal">
+                            <td>
+                                <h5>{{event.name}}</h5>
+                                <p>{{event.description}}</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <h4>Key Business Opportunities</h4>
+                    <table>
+                        <tr *ngFor="let event of keyBusinessOpportunities">
+                            <td>
+                                <h5>{{event.name}}</h5>
+                                <p>{{event.description}}</p>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>

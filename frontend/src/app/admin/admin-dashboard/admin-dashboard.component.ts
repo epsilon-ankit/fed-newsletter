@@ -61,7 +61,7 @@ export class AdminDashboardComponent implements OnInit {
         label: 'User',
         value: 'user'
       }];
-      this.generateDPF();
+      //this.generatePDF();
   }
 
   /**
@@ -189,7 +189,7 @@ export class AdminDashboardComponent implements OnInit {
   /**
   * @description Generate PDF
   */
-  public generateDPF():void {
+  public generatePDF():void {
 
     const requests = forkJoin(
       this.eventService.getEvents().pipe(map(value => ({type: 'events', value : value}))),
@@ -211,18 +211,18 @@ export class AdminDashboardComponent implements OnInit {
             this.keyBusinessOpportunities = this.projectsList.filter(item => item.oppStatus !== 'Won' && item.oppStatus !== 'Verbal Approval');
           }
         }
+        let htmlData = this.pdfData.nativeElement;
+        setTimeout(() => {
+          let doc = new jsPDF({unit: 'px', format: 'a3'});
+          doc.html(htmlData.innerHTML, {
+            callback: function (doc) {
+              doc.save('newsletter.pdf');
+            },
+            x:20,
+            y:10
+          });
+        }, 1000);
       }
     )
-    let htmlData = this.pdfData.nativeElement;
-      setTimeout(() => {
-        let doc = new jsPDF('p','pt', 'a4');
-        doc.html(htmlData.innerHTML, {
-          callback: function (doc) {
-            doc.save('newsletter.pdf');
-          },
-          x:20,
-          y:10
-        });
-      }, 1000);
   }
 }

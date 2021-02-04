@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
-  let event = new Event(_.pick(req.body, ["name", "description", "link", "eventStatus"]));
+  let event = new Event(_.pick(req.body, ["name", "description", "link"]));
   await event.save();
   res.send(event);
 });

@@ -12,9 +12,6 @@ const eventSchema = new mongoose.Schema({
   },
   link: {
     type: String,
-  },
-  eventStatus: {
-    type: String,
   }
 });
 
@@ -24,8 +21,7 @@ function validateEvent(event) {
   const schema = {
     name: Joi.string().min(5).max(50).required(),
     description: Joi.string().max(200).required(),
-    link: Joi.string().allow(''),
-    eventStatus: Joi.string().required(),
+    link: Joi.string().allow('')
   };
   return Joi.validate(event, schema);
 }

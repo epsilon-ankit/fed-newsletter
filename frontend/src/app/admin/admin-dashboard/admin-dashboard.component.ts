@@ -34,6 +34,7 @@ export class AdminDashboardComponent implements OnInit {
   keyBusinessOpportunities: any;
   upcomingEvents: any;
   @Input() eventsList: any;
+  @Input() projectsList: any;
 
 
   constructor(
@@ -200,11 +201,15 @@ export class AdminDashboardComponent implements OnInit {
         for(let result of resp) {
           if(result.type === 'events') {
             this.eventsList = result.value;
-            this.upcomingEvents = this.eventsList.filter(item => item.eventStatus === 'Upcoming Events');
-            this.newWinsSigned = this.eventsList.filter(item => item.eventStatus === 'New Wins - Signed');
-            this.newWinsVerbal = this.eventsList.filter(item => item.eventStatus === 'New Wins - Verbal');
-            this.keyBusinessOpportunities = this.eventsList.filter(item => item.eventStatus === 'Key Business Opportunities'); 
-          } 
+            this.upcomingEvents = this.eventsList;
+          }
+          else if(result.type === 'projects') { 
+            this.projectsList = result.value;
+            console.log(this.projectsList);
+            this.newWinsSigned = this.projectsList.filter(item => item.oppStatus === 'Won');
+            this.newWinsVerbal = this.projectsList.filter(item => item.oppStatus === 'Verbal Approval');
+            this.keyBusinessOpportunities = this.projectsList.filter(item => item.oppStatus !== 'Won' && item.oppStatus !== 'Verbal Approval');
+          }
         }
       }
     )

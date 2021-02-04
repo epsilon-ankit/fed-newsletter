@@ -183,30 +183,61 @@
                         </tr>
                     </table>
                     <h4>New Wins - Signed</h4>
-                    <table>
-                        <tr *ngFor="let event of newWinsSigned">
+                    <table *ngFor="let project of newWinsSigned">
+                        <tr>
                             <td>
-                                <h5>{{event.name}}</h5>
-                                <p>{{event.description}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                     <h4>New Wins - Verbal</h4>
-                    <table>
-                        <tr *ngFor="let event of newWinsVerbal">
+                    <table *ngFor="let project of newWinsVerbal">
+                        <tr>
                             <td>
-                                <h5>{{event.name}}</h5>
-                                <p>{{event.description}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                     <h4>Key Business Opportunities</h4>
-                    <table>
-                        <tr *ngFor="let event of keyBusinessOpportunities">
+                    <table *ngFor="let project of keyBusinessOpportunities">
+                        <tr>
                             <td>
-                                <h5>{{event.name}}</h5>
-                                <p>{{event.description}}</p>
+                                <table>
+                                    <tr>
+                                        <td>Client: {{project.clientName}}</td>
+                                    </tr>
+                                </table>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value : {{project.dealValue}}</td>
+                            <td>Status : {{project.oppStatus}}</td>
+                            <td>Start Date : {{project.estStartDate.day}}/{{project.estStartDate.month}}/{{project.estStartDate.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{project.oppDesc}}</td>
                         </tr>
                     </table>
                 </div>

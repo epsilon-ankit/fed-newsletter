@@ -201,7 +201,7 @@ export class AdminDashboardComponent implements OnInit {
         for(let result of resp) {
           if(result.type === 'events') {
             this.eventsList = result.value;
-            this.upcomingEvents = this.eventsList.filter(item => item.eventStatus === 'Upcoming Events');             
+            this.upcomingEvents = this.eventsList;
           }
           else if(result.type === 'projects') { 
             this.projectsList = result.value;

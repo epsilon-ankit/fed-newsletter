@@ -206,6 +206,7 @@ export class AdminDashboardComponent implements OnInit {
           else if(result.type === 'projects') { 
             this.projectsList = result.value;
             console.log(this.projectsList);
+            
             this.newWinsSigned = this.projectsList.filter(item => item.oppStatus === 'Won');
             this.newWinsVerbal = this.projectsList.filter(item => item.oppStatus === 'Verbal Approval');
             this.keyBusinessOpportunities = this.projectsList.filter(item => item.oppStatus !== 'Won' && item.oppStatus !== 'Verbal Approval');

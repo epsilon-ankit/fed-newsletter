@@ -199,7 +199,7 @@
                             <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px;  padding-bottom: 15px;">{{project.oppDesc}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px;  padding-bottom: 15px;"><span style="font-weight: bold;">Status Update: {{project.updatedAt}}</span> {{project.statusUpdate}}</td>
+                            <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px;  padding-bottom: 15px;"><span style="font-weight: bold;">Status Update: {{project.updatedAt | date: "dd/MM/yyyy 'at' h:mma" }}</span> {{project.statusUpdate}}</td>
                         </tr>
                     </table>
                     <h4 style="font-size: 13px; margin-top: 15px; padding-top: 15px; border-top: #ccc solid 1px; width: 600px;">New Wins - Verbal</h4>
@@ -215,7 +215,7 @@
                             <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px; padding-bottom: 15px;">{{project.oppDesc}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px;  padding-bottom: 15px;"><span style="font-weight: bold;">Status Update: {{project.updatedAt}}</span> {{project.statusUpdate}}</td>
+                            <td colspan="2" style="font-size: 9px; color: #333; padding-right: 20px; width: 600px;  padding-bottom: 15px;"><span style="font-weight: bold;">Status Update: {{project.updatedAt | date: "dd/MM/yyyy 'at' h:mma" }}</span> {{project.statusUpdate}}</td>
                         </tr>
                     </table>
                     <h4 style="font-size: 13px; margin-top: 15px; padding-top: 15px; border-top: #ccc solid 1px; width: 600px;">Key Business Opportunities</h4>

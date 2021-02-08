@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   passwordSubmitted: boolean;
   searchForm;
   isAdmin:any=false;
+  isAuthor:any=false;
   constructor(
     public authSerive: AuthService,
     public router: Router,
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
       searchText: ['']
     })
     this.isAdmin = this.authSerive.isLoggednIn() && this.authSerive.getRole() === 'admin' ? true : false;
+    this.isAuthor = this.authSerive.isLoggednIn() && this.authSerive.getRole() === 'author' || this.authSerive.getRole() === 'admin' ? true : false;
   }
 
   ngOnInit() {

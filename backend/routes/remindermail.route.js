@@ -7,7 +7,6 @@ const nodemailer = require('nodemailer');
 
 router.post('/', async (req, res) => {
     //const { error } = validate(req.body);
-
     /* if (error) {
         return res.status(400).send(error.details[0].message);
     } */
@@ -48,8 +47,7 @@ router.post('/', async (req, res) => {
             return console.log(error);
         }
         console.log("Message sent: %s", info.messageId);
-        
-    });
+        });
 
       /* let leads = Lead.find({}, (err, docs) => {
           console.log(`Lead DOCS: ${docs}`);

@@ -24,7 +24,7 @@ if (!config.get('PrivateKey')) {
 }
 
 //When in development
-let db_uri = "mongodb://localhost:27017/newsletter";
+let db_uri = "mongodb://127.0.0.1:27017/newsletter";
  
 //When in production
 if (process.env.NODE_ENV == 'production') {

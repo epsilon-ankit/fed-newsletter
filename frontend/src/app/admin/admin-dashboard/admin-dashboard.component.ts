@@ -11,6 +11,7 @@ import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import jsPDF from 'jspdf';
 import { EventServiceService } from 'src/app/event/event-service.service';
+import { SendmailService } from "./sendmail.service";
 
 
 @Component({
@@ -44,6 +45,7 @@ export class AdminDashboardComponent implements OnInit {
     private confirmationService: ConfirmationService,
     public projectService: ProjectService,
     public eventService: EventServiceService,
+    private sendmailService: SendmailService
   ) { }
 
   ngOnInit() {
@@ -117,6 +119,19 @@ export class AdminDashboardComponent implements OnInit {
     this.confirmPassword = "";
     this.submitted = false;
     this.userDialog = true;
+  }
+
+  /**
+  * @description Send Reminder mail
+  */
+  sendReminderMail() {
+    this.sendmailService.send({}).subscribe(
+      resp => {
+        console.log("mail sent");
+        console.log(resp);
+      }
+    )
+    
   }
 
   /**

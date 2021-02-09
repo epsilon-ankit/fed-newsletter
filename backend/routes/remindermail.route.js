@@ -5,18 +5,11 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 
-router.post('/', async (req, res) => {
-    //const { error } = validate(req.body);
-    /* if (error) {
-        return res.status(400).send(error.details[0].message);
-    } */
+router.post('/', auth, async (req, res) => {
 
-    let reqData = req.body;
-    console.log(`Request Data: ${reqData}`);
     const output = `
         <div>
-            <p>${reqData.field1}</p>
-            <p>${reqData.field2}</p>
+            <p>This is the main body of the mail where we need to put the reminder message.</p>
         </div>
     `;
 
@@ -24,6 +17,8 @@ router.post('/', async (req, res) => {
         host: "pc1relay.epsilon.com",
         port: 25,
         secure: false, // true for 465, false for other ports
+        logger: true,
+        debug: true,
         auth: {
           user: '', // generated ethereal user
           pass: '' // generated ethereal password

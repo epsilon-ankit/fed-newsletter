@@ -11,7 +11,8 @@ emailRouter.route('/', (req, res)=>{
 // route which captures form details and sends it to your personal mail
 emailRouter.post('/', async (req, res)=>{
   
-  console.log("Test",req.body.email)
+  console.log("Test", req.body.email);
+  
   /*Transport service is used by node mailer to send emails, it takes service and auth object as parameters.
     here we are using gmail as our service 
     In Auth object , we specify our email and password

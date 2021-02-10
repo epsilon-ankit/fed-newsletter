@@ -16,6 +16,8 @@ import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {DropdownModule} from 'primeng/dropdown';
+import {EmailModule} from './../reminder/reminder.module';
+
 
 @NgModule({
     declarations: [AdminDashboardComponent],
@@ -34,8 +36,9 @@ import {DropdownModule} from 'primeng/dropdown';
         PasswordModule,
         ButtonModule,
         RadioButtonModule,
-        DropdownModule
-    ],
+        DropdownModule,
+        EmailModule
+    ]
 })
 
 export class AdminModule {}

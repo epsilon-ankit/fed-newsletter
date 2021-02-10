@@ -14,6 +14,6 @@ export class EmailService {
         'Content-Type' :'application/json'
       })
     }
-    return this.httpreq.post("http://15.206.221.177:4005/api/send",body,headers);
+    return this.httpreq.post("http://localhost:4005/api/send",body,headers);
   }
 }

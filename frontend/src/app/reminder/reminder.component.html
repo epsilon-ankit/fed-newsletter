@@ -1,0 +1,8 @@
+<div class="form-container">
+    <form [formGroup]="MailerForm">
+        <label>Enter the email id to send mail to:</label>
+        <input placeholder="provide email id here" formControlName="email" type="email">
+      <br>
+   <button type="submit" (click)="sendMail()">Click Me</button>
+  </form>
+</div>  

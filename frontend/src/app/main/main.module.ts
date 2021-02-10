@@ -16,10 +16,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouteModule } from '../route/route.module';
 import { ArtifactsComponent } from '../artifacts/artifacts.component';
+import { EmailModule } from "../reminder/reminder.module";
 
 @NgModule({
   declarations: [MainComponent, LoginComponent, DashboardComponent, ArtifactsComponent],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SharedModule, AngularFontAwesomeModule, NgbModule, NgxChartsModule, BrowserAnimationsModule, RouteModule, ProjectModule, EventModule, SearchModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SharedModule, AngularFontAwesomeModule, NgbModule, NgxChartsModule, BrowserAnimationsModule, RouteModule, ProjectModule, EventModule, SearchModule, EmailModule],
   exports: [MainComponent, LoginComponent]
 })
 export class MainModule { }

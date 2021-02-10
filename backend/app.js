@@ -13,6 +13,7 @@ const users = require('./routes/users.route');
 const auth = require('./routes/auth.route');
 const events = require('./routes/events.route');
 const reminderMail = require('./routes/remindermail.route');
+const sendMail = require('./routes/sendmail.route');
 var cors = require('cors');
 const app = express();
 
@@ -44,7 +45,8 @@ app.use('/api/auth', auth);
 app.use('/api/project', project);
 app.use('/api/lead', lead);
 app.use('/api/events', events);
-app.use('/api/send', reminderMail);
+// app.use('/api/send', reminderMail);
+app.use('/api/send', sendMail);
 // app.use('/api/platforms', platforms);
 // app.use('/api/properties', properties);
 

@@ -20,7 +20,6 @@ export class EmailComponent {
   }
 
   sendMail(){
-    alert("Test");
     let email  = this.MailerForm.value.email;
     let reqObj = {
       email:email

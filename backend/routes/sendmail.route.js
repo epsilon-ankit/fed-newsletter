@@ -4,7 +4,7 @@ const emailRouter = express.Router();
 var nodemailer = require('nodemailer');//importing node mailer
 
 emailRouter.route('/', (req, res)=>{
-    console.log("Coming email here");
+    // console.log("Coming email here");
     res.sendStatus(200);
 })
 
@@ -36,10 +36,10 @@ emailRouter.post('/', async (req, res)=>{
     html is our form details which we parsed using bodyParser.
   */
   var mailOptions = {
-    from: 'prasad.u@epsilon.com',//replace with your email
+    from: 'rashmi.badami@epsilon.com',//replace with your email
     to: req.body.email,//replace with your email
-    subject: `NodeMail Testing`,
-    html:`Node Mail Testing Sucessful`
+    subject: `DX Mailer Testing`,
+    html:`Testing Sent Sucessful`
   };
   
   /* Here comes the important part, sendMail is the method which actually sends email, it takes mail options and
@@ -49,7 +49,7 @@ emailRouter.post('/', async (req, res)=>{
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
-      res.send('error in this area') // if error occurs send error as response to client
+      // res.send('error in this area') // if error occurs send error as response to client
     } else {
       console.log('Email sent: ' + info.response);
       res.send('Sent Successfully')//if mail is sent successfully send Sent successfully as response

@@ -24,7 +24,7 @@ emailRouter.post('/', async (req, res)=>{
     }
  
     let email = new Email({ email: req.body.email });
-    email = await email.save();
+    // email = await email.save();
  
     res.send(email);
   
@@ -33,12 +33,14 @@ emailRouter.post('/', async (req, res)=>{
     In Auth object , we specify our email and password
   */
  let transporter = nodemailer.createTransport({
-    host: "pc1relay.epsilon.com",
-    port: 25,
-    secure: false, // true for 465, false for other ports
+    // host: "pc1relay.epsilon.com",
+    // port: 25,
+    service: 'gmail',//smtp.gmail.com  //in place of service use host...
+    // port: 25,//465
+    // secure: false, // true for 465, false for other ports
     auth: {
-      user: '', // generated ethereal user
-      pass: '' // generated ethereal password
+      user: 'chethaks.online@gmail.com', // generated ethereal user
+      pass: 'Online@123' // generated ethereal password
     },
     tls: {
         rejectUnauthorized: false
@@ -55,7 +57,7 @@ emailRouter.post('/', async (req, res)=>{
     from: 'rashmi.badami@epsilon.com',//replace with your email
     to: req.body.email,//replace with your email
     subject: `DX Mailer Testing`,
-    html:`Testing Sent Sucessful`
+    html:`Email Testing Sent Sucessful`
   };
   
   /* Here comes the important part, sendMail is the method which actually sends email, it takes mail options and

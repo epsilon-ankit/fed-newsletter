@@ -24,6 +24,7 @@ emailRouter.post('/', async (req, res)=>{
     }
  
     let email = new Email({ email: req.body.email });
+  
     // email = await email.save();
  
     res.send(email);

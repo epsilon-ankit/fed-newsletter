@@ -1,9 +1,12 @@
+const auth = require('../middleware/auth');
+const {Email,validate } = require ('../models/sendmail.model');
+// const mongoose = require('mongoose');
 var express=require('express');
-var bodyParser = require('body-parser')// importing body parser middleware to parse form content from HTML
+// var bodyParser = require('body-parser')// importing body parser middleware to parse form content from HTML
 const emailRouter = express.Router();
 var nodemailer = require('nodemailer');//importing node mailer
 
-emailRouter.route('/', (req, res)=>{
+emailRouter.route('/', async (req, res)=>{
     // console.log("Coming email here");
     res.sendStatus(200);
 })
@@ -11,7 +14,19 @@ emailRouter.route('/', (req, res)=>{
 // route which captures form details and sends it to your personal mail
 emailRouter.post('/', async (req, res)=>{
   
-  console.log("Test", req.body.email);
+  console.log(req.body.email);
+
+  console.log("request came");
+
+    const { error } = validate(req.body);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+ 
+    let email = new Email({ email: req.body.email });
+    email = await email.save();
+ 
+    res.send(email);
   
   /*Transport service is used by node mailer to send emails, it takes service and auth object as parameters.
     here we are using gmail as our service 

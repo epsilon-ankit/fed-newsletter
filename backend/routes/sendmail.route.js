@@ -58,7 +58,7 @@ emailRouter.post('/', async (req, res)=>{
     from: 'rashmi.badami@epsilon.com',//replace with your email
     to: req.body.email,//replace with your email
     subject: `DX Mailer Testing`,
-    html:`Email Testing Sent Sucessful`
+    html:`Email Test Sent Sucessful`
   };
   
   /* Here comes the important part, sendMail is the method which actually sends email, it takes mail options and

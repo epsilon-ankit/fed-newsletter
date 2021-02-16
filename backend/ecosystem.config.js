@@ -14,6 +14,8 @@ module.exports = {
     },
     env_production : {
        "NODE_ENV": "production",
+       "DB_USERNAME":"root",
+       "DB_PASSWORD":"rJqnKNVAkEl1",
        "DATABASE_URI": "127.0.0.1",
        "DATABASE_PORT": "27017"
     }

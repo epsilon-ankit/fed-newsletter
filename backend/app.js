@@ -49,4 +49,4 @@ app.use('/api/send', sendMail);
 // app.use('/api/properties', properties);
 
 const port = process.env.PORT || 4005;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () => {console.log(`Listening on port ${port}...`); console.log('Node Env', process.env.NODE_ENV); console.log('DB', db_uri)});

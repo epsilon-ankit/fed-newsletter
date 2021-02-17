@@ -85,12 +85,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3" *ngFor="let val of single">
-                    <div class="card-counter primary {{ val.id }}">
+                    <div (click)="showDialog()" class="card-counter primary {{ val.id }}">
                         <i class="icon"></i>
                         <span class="count-numbers">{{ val.value }}</span>
                         <span class="count-name">{{ val.name }}</span>
                     </div>
                 </div>
+                <p-dialog header="Project Details" [(visible)]="display" [style]="{width: '60vw'}">
+                    <div class="card-columns">
+                        <div class="card" *ngFor="let opp of opportunity">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Client Name: {{ opp.clientName }}
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    Opportunity Name: {{ opp.oppName }}
+                                </h6>
+                                <a class="card-link">Deal Value: {{ opp.dealValue }}</a>
+                                <a [routerLink]="['/projects/deatil', opp._id]" class="card-link text-right">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </p-dialog>
             </div>
         </div>
         <!-- <ngx-charts-number-card

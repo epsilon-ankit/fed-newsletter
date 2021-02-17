@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
     first;
     three = [];
     lists;
+    display: boolean = false;
 
     colorScheme = {
         domain: [
@@ -100,56 +101,58 @@ export class DashboardComponent implements OnInit {
                 if (resp) {
                     Object.keys(resp).forEach((key) => {
                         console.log(resp[key]);
+                        this.opportunity.push(resp[key]);
+                        console.log("Data needed",this.opportunity);
                         if (resp[key].oppStatus == "RFP Requested") {
-                            this.RFPR.push(resp[key].oppStatus);
+                            this.RFPR.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "RFP In Progress") {
-                            this.RFPIP.push(resp[key].oppStatus);
+                            this.RFPIP.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Proposal Submitted") {
-                            this.PS.push(resp[key].oppStatus);
+                            this.PS.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Proposal Under Review") {
-                            this.PUR.push(resp[key].oppStatus);
+                            this.PUR.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "SOW Under Review") {
-                            this.SOWUR.push(resp[key].oppStatus);
+                            this.SOWUR.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "SOW") {
-                            this.SOW.push(resp[key].oppStatus);
+                            this.SOW.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Verbal Approval") {
-                            this.VA.push(resp[key].oppStatus);
+                            this.VA.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Won") {
-                            this.WON.push(resp[key].oppStatus);
+                            this.WON.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Business Development") {
-                            this.BD.push(resp[key].oppStatus);
+                            this.BD.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Proposal not shortlisted") {
-                            this.PNS.push(resp[key].oppStatus);
+                            this.PNS.push(resp[key]);
                         }
                         if (resp[key].oppStatus == "Closed") {
-                            this.CLOSED.push(resp[key].oppStatus);
+                            this.CLOSED.push(resp[key]);
                         }
                         if (resp[key].domain == "Financial") {
-                            this.financial.push(resp[key].domain);
+                            this.financial.push(resp[key]);
                         }
                         if (resp[key].domain == "Media") {
-                            this.media.push(resp[key].domain);
+                            this.media.push(resp[key]);
                         }
                         if (resp[key].domain == "Healthcare") {
-                            this.healthcare.push(resp[key].domain);
+                            this.healthcare.push(resp[key]);
                         }
                         if (resp[key].domain == "Telecom") {
-                            this.telecom.push(resp[key].domain);
+                            this.telecom.push(resp[key]);
                         }
                         if (resp[key].domain == "Retail") {
-                            this.retail.push(resp[key].domain);
+                            this.retail.push(resp[key]);
                         }
                         if (resp[key].domain == "Travel & Hospitality") {
-                            this.tnh.push(resp[key].domain);
+                            this.tnh.push(resp[key]);
                         }
                         if(resp[key].clientName)
                         {
@@ -274,15 +277,19 @@ export class DashboardComponent implements OnInit {
       });
       
        for (var num in countClient) {
-      result.push({'name': num, 'value': countClient[num]});
-      }
+            result.push({'name': num, 'value': countClient[num]});
+        }
       
        if (e == "Vertical Domain") {
-      this.single = this.two;
-      } else if (e == "By Client") {
-      this.single = result;
-      } else {
-      this.single = this.first;
-      }
-      }
+            this.single = this.two;
+            } else if (e == "By Client") {
+            this.single = result;
+            } else {
+            this.single = this.first;
+        }
+    }
+
+    showDialog() {
+        this.display = true;
+    }
 }

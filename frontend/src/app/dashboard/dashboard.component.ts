@@ -31,6 +31,11 @@ export class DashboardComponent implements OnInit {
     first;
     three = [];
     lists;
+    display: boolean = false;
+
+    showDialog() {
+        this.display = true;
+    }
 
     colorScheme = {
         domain: [

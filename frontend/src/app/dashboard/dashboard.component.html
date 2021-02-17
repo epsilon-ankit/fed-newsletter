@@ -85,11 +85,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3" *ngFor="let val of single">
-                    <div class="card-counter primary {{ val.id }}">
+                    <div (click)="showDialog()" class="card-counter primary {{ val.id }}">
                         <i class="icon"></i>
                         <span class="count-numbers">{{ val.value }}</span>
                         <span class="count-name">{{ val.name }}</span>
                     </div>
+                    <p-dialog header="Project Details" [(visible)]="display" [style]="{width: '50vw'}">
+                        <span class="count-numbers">{{ val.value }}</span>
+                        <span class="count-name">{{ val.name }}</span>
+                    </p-dialog>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ emailRouter.post('/', async (req, res)=>{
  
     let email = new Email({ email: req.body.email });
   
-    // email = await email.save();
+    email = await email.save();
  
     res.send(email);
   
@@ -34,14 +34,14 @@ emailRouter.post('/', async (req, res)=>{
     In Auth object , we specify our email and password
   */
  let transporter = nodemailer.createTransport({
-    // host: "pc1relay.epsilon.com",
-    // port: 25,
-    service: 'gmail',//smtp.gmail.com  //in place of service use host...
+    host: "pc1relay.epsilon.com",
+    port: 25,
+    // service: 'gmail',//smtp.gmail.com  //in place of service use host...
     // port: 25,//465
-    // secure: false, // true for 465, false for other ports
+    secure: false, // true for 465, false for other ports
     auth: {
-      user: 'chethaks.online@gmail.com', // generated ethereal user
-      pass: 'Online@123' // generated ethereal password
+      user: '', // generated ethereal user
+      pass: '' // generated ethereal password
     },
     tls: {
         rejectUnauthorized: false

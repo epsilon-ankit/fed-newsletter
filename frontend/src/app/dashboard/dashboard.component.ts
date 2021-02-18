@@ -286,7 +286,7 @@ export class DashboardComponent implements OnInit {
         console.log(event);
     }
 
-    change(e, value) {
+    change(e) {
       let countClient = {};
       let result =[];
       this.three.forEach(function(x){

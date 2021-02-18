@@ -100,9 +100,9 @@ export class DashboardComponent implements OnInit {
             (resp) => {
                 if (resp) {
                     Object.keys(resp).forEach((key) => {
-                        console.log(resp[key]);
-                        this.opportunity.push(resp[key]);
-                        console.log("Data needed",this.opportunity);
+                        // console.log(resp[key]);
+                        // this.opportunity.push(resp[key]);
+                        // console.log("Data needed",this.opportunity);
                         if (resp[key].oppStatus == "RFP Requested") {
                             this.RFPR.push(resp[key]);
                         }
@@ -176,57 +176,68 @@ export class DashboardComponent implements OnInit {
                 id: "won",
                 name: "Won",
                 value: this.WON.length,
+                data: this.WON
             },
             {
                 id: "verba",
                 name: "Verbal approval",
                 value: this.VA.length,
+                data: this.VA
             },
             {
                 id: "Rfpr",
                 name: "RFP Requested",
                 value: this.RFPR.length,
+                data: this.RFPR
             },
             {
                 id: "Rfpi",
                 name: "RFP in-progress",
                 value: this.RFPIP.length,
+                data: this.RFPIP
             },
             {
                 id: "Pros",
                 name: "Proposal submitted",
                 value: this.PS.length,
+                data: this.PS
             },
             {
                 id: "Prour",
                 name: "Proposal under Review",
                 value: this.PUR.length,
+                data: this.PUR
             },
             {
                 id: "Sowu",
                 name: "SOW under Review",
                 value: this.SOWUR.length,
+                data: this.SOWUR
             },
             {
                 id: "Sow",
                 name: "SOW",
                 value: this.SOW.length,
+                data: this.SOW
             },
 
             {
                 id: "Bda",
                 name: "Business Development",
                 value: this.BD.length,
+                data: this.BD
             },
             {
                 id: "propNotShort",
                 name: "Proposal not shortlisted",
                 value: this.PNS.length,
+                data: this.PNS
             },
             {
                 id: "closed",
                 name: "Closed",
                 value: this.CLOSED.length,
+                data: this.CLOSED
             },
         ];
 
@@ -235,31 +246,37 @@ export class DashboardComponent implements OnInit {
                 id: "financial",
                 name: "Financial",
                 value: this.financial.length,
+                data: this.financial
             },
             {
                 id: "retail",
                 name: "Retail",
                 value: this.retail.length,
+                data: this.retail
             },
             {
                 id: "media",
                 name: "Media",
                 value: this.media.length,
+                data: this.media
             },
             {
                 id: "healthcare",
                 name: "Healthcare",
                 value: this.healthcare.length,
+                data: this.healthcare
             },
             {
                 id: "telecom",
                 name: "Telecom",
                 value: this.telecom.length,
+                data: this.telecom
             },
             {
                 id: "Travel",
                 name: "Travel & Hospitality",
                 value: this.tnh.length,
+                data: this.tnh
             },
         ];
         this.single = this.first;
@@ -277,7 +294,7 @@ export class DashboardComponent implements OnInit {
       });
       
        for (var num in countClient) {
-            result.push({'name': num, 'value': countClient[num]});
+            result.push({'name': num, 'value': countClient[num], 'data': this.opportunity});
         }
       
        if (e == "Vertical Domain") {
@@ -289,7 +306,10 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    showDialog() {
+    showDialog(value) {
         this.display = true;
+        // console.log(value.data);
+        this.opportunity = value.data;
+        // console.log(this.opportunity)
     }
 }
